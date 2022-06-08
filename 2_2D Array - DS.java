@@ -1,26 +1,12 @@
 
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.function.*;
-import java.util.regex.*;
-import java.util.stream.*;
-import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
+import java.lang.*;
+import java.io.*;
 
-class Result {
-
-    /*
-     * Complete the 'hourglassSum' function below.
-     *
-     * The function is expected to return an INTEGER.
-     * The function accepts 2D_INTEGER_ARRAY arr as parameter.
-     */
-
-    public static int hourglassSum(List<List<Integer>> arr) {
+/* Name of the class has to be "Main" only if the class is public. */
+class Solution
+{
+     public static int hourglassSum(List<List<Integer>> arr) {
     // Write your code here
      int maxSum=Integer.MIN_VALUE;
      for(int i=0;i<arr.size()-2;i++)
@@ -40,34 +26,19 @@ class Result {
      return maxSum;
 
     }
-
-}
-
-public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-
-        List<List<Integer>> arr = new ArrayList<>();
-
-        IntStream.range(0, 6).forEach(i -> {
-            try {
-                arr.add(
-                    Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                        .map(Integer::parseInt)
-                        .collect(toList())
-                );
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+    public static void main (String[] args) throws java.lang.Exception
+    {   Scanner scn=new Scanner(System.in);
+        List<List<Integer>> arr;
+        arr=new ArrayList<>();
+        for(int i=0;i<6;i++)
+        {   List<Integer> row=new ArrayList<>();
+            for(int j=0;j<6;j++)
+            {
+               row.add(scn.nextInt());
             }
-        });
-
-        int result = Result.hourglassSum(arr);
-
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
-
-        bufferedReader.close();
-        bufferedWriter.close();
+            arr.add(row);
+        }
+        System.out.println(hourglassSum(arr));
     }
 }
+
